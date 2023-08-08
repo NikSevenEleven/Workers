@@ -38,10 +38,20 @@ Index page
             </div>
         <hr>
         @endforeach
+    <div class="my-nav">
+        {{$workers->links()}}
+    </div>
 
 
 
 </div>
+
+<style>
+    .my-nav svg
+    {
+        width: 15px;
+    }
+</style>
 
 </body>
 </html>
