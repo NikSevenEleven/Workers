@@ -10,10 +10,6 @@
 <body>
 Index page
 <div>
-    <hr>
-    <div>
-        <a href="{{route('worker.create')}}">Add</a>
-    </div>
          <hr>
         @foreach($workers as $worker)
             <div>
@@ -29,6 +25,9 @@ Index page
                         <a href="{{route('worker.edit',$worker->id)}}">Edit</a>
                     </div>
                     <div>
+                        <a href="{{route('worker.create')}}">Add</a>
+                    </div>
+                    <div>
                         <form action="{{route('worker.delete', $worker->id)}}" method="POST">
                         @method('DELETE')
                         @csrf
@@ -39,6 +38,7 @@ Index page
             </div>
         <hr>
         @endforeach
+
 
 
 </div>

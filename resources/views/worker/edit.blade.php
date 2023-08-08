@@ -15,13 +15,19 @@ Create page
                 <form action="{{route('worker.update',$worker->id)}}" method="POST">
                     @method('PATCH')
                     @csrf
-                    <div style="margin-bottom: 10px"><input type="text" name="name" placeholder="name" value="{{$worker->name}}"></div>
-                    <div style="margin-bottom: 10px"><input type="text" name="surname" placeholder="surname" value="{{$worker->surname}}"></div>
-                    <div style="margin-bottom: 10px"><input type="email" name="email" placeholder="email" value="{{$worker->email}}"></div>
-                    <div style="margin-bottom: 10px"><input type="number" name="age" placeholder="age" value="{{$worker->age}}"></div>
+                    @error('name')<div>{{$message}}</div>@enderror
+                    <div style="margin-bottom: 10px"><input type="text" name="name" placeholder="name" value="{{old('name') ?? $worker->name}}"></div>
+                    @error('surname')<div>{{$message}}</div>@enderror
+                    <div style="margin-bottom: 10px"><input type="text" name="surname" placeholder="surname" value="{{old('surname') ?? $worker->surname}}"></div>
+                    @error('email')<div>{{$message}}</div>@enderror
+                    <div style="margin-bottom: 10px"><input type="email" name="email" placeholder="email" value="{{ old('email') ?? $worker->email}}"></div>
+                    @error('age')<div>{{$message}}</div>@enderror
+                    <div style="margin-bottom: 10px"><input type="number" name="age" placeholder="age" value="{{old('age') ?? $worker->age}}"></div>
+                    @error('description')<div>{{$message}}</div>@enderror
                     <div style="margin-bottom: 10px"><textarea name="description" type="description" placeholder="description">
-                            {{$worker->description}}
+                            {{old('description') ?? $worker->description}}
                         </textarea></div>
+                    @error('is_married')<div>{{$message}}</div>@enderror
                     <div style="margin-bottom: 10px">
                         <label for="is_married">Is_married</label>
                         <input id="is_married" type="checkbox" name="is_married"
@@ -31,7 +37,7 @@ Create page
                     <div style="margin-bottom: 10px"><button type="submit" value="Save">Save</button></div>
                 </form>
             </div>
-
+                   <a href="{{route('worker.index')}}">Back</a>
 </div>
 
 </body>
