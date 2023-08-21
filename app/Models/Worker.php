@@ -10,4 +10,14 @@ class Worker extends Model
     use HasFactory;
     protected $table='workers';
     protected $guarded=false;
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class, 'worker_id','id');
+    }
+
+    public function position()
+    {
+        return $this->BelongsTo(Position::class,'position_id','id');
+    }
 }
