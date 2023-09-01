@@ -30,20 +30,27 @@ class DevCommand extends Command
      */
     public function handle()
     {
-//      $this->prepareData();
-//        $this->prepareManyToMany();
-        $worker = Worker::find(29);
-        dd($worker->projects->toArray());
-//        $projectWorkers = ProjectWorker::where('project_id',$project->id)->get();
-//        $workerIds=$projectWorkers->pluck('worker_id')->toArray();
-//
-//        $workers = Worker::whereIn('id', $workerIds)->get();
-//        dd($workers->toArray());
+        $worker1 = Worker::find(2);
+        $worker2 = Worker::find(1);
+        $worker3 = Worker::find(3);
+        $project =Project::find(1);
 
+//        $worker->projects()->attach($project->id);
+//        $worker->projects()->toggle($project->id);
+//            $project->workers()->attach([
+//                $worker1->id,
+//                $worker2->id,
+//                $worker3->id
+//            ]);
 
+        $project->workers()->sync($worker2->id);
+        $project->workers()->detach();
+        dd($project->workers->toArray());
 
 
     }
+
+
 
 
     private function prepareData()
@@ -190,6 +197,17 @@ class DevCommand extends Command
 
     }
 
+
+    private function prepareProjects()
+    {
+        $project1 = Project::create([
+            'title'=>'Shop'
+        ]);
+
+        $project2 = Project::create([
+            'title'=>'Blog'
+        ]);
+    }
     private function prepareManyToMany()
     {
         $workerManager = Worker::find(29);
