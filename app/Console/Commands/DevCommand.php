@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Department;
 use App\Models\Position;
 use App\Models\Profile;
 use App\Models\Project;
@@ -30,23 +31,21 @@ class DevCommand extends Command
      */
     public function handle()
     {
-        $worker1 = Worker::find(2);
-        $worker2 = Worker::find(1);
-        $worker3 = Worker::find(3);
-        $project =Project::find(1);
 
-//        $worker->projects()->attach($project->id);
-//        $worker->projects()->toggle($project->id);
-//            $project->workers()->attach([
-//                $worker1->id,
-//                $worker2->id,
-//                $worker3->id
-//            ]);
+//        $this->prepareData();
+//        $this->prepareManyToMany();
 
-        $project->workers()->sync($worker2->id);
-        $project->workers()->detach();
-        dd($project->workers->toArray());
+         $department =Department::find(1);
+//        $position =Position::where('department_id',$department->id)
+//            ->where('title','Boss')->first();
+//        $worker=Worker::where('position_id',$position->id)->first();
+//        dd($worker->toArray());
 
+          $worker = Worker::find(7);
+          dd($worker->position->department->toArray());
+
+//        $department =Department::find(1);
+//      dd($department->boss);
 
     }
 
@@ -55,16 +54,32 @@ class DevCommand extends Command
 
     private function prepareData()
     {
+        $department1 = Department::create(
+            [
+                'title'=>'IT'
+            ]
+        );
+
+        $department2 = Department::create(
+            [
+                'title'=>'Analytics'
+            ]
+        );
+
+
         $position1 = Position::create([
-           'title'=>'Developer'
+           'title'=>'Developer',
+            'department_id'=>$department1->id
         ]);
 
         $position2 = Position::create([
-            'title'=>'Manager'
+            'title'=>'Manager',
+            'department_id'=>$department1->id
         ]);
 
         $position2 = Position::create([
-            'title'=>'Designer'
+            'title'=>'Designer',
+            'department_id'=>$department1->id
         ]);
 
 
@@ -198,24 +213,15 @@ class DevCommand extends Command
     }
 
 
-    private function prepareProjects()
-    {
-        $project1 = Project::create([
-            'title'=>'Shop'
-        ]);
 
-        $project2 = Project::create([
-            'title'=>'Blog'
-        ]);
-    }
     private function prepareManyToMany()
     {
-        $workerManager = Worker::find(29);
-        $workerBackEnd = Worker::find(33);
-        $workerBackEnd2 = Worker::find(28);
-        $workerDesigner = Worker::find(32);
-        $workerFrontEnd = Worker::find(31);
-        $workerFrontEnd2 = Worker::find(30);
+        $workerManager = Worker::find(2);
+        $workerBackEnd = Worker::find(6);
+        $workerBackEnd2 = Worker::find(1);
+        $workerDesigner = Worker::find(5);
+        $workerFrontEnd = Worker::find(4);
+        $workerFrontEnd2 = Worker::find(3);
 
         $project1 = Project::create([
            'title'=>'Shop'
