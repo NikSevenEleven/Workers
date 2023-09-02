@@ -2,10 +2,12 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Avatar;
 use App\Models\Department;
 use App\Models\Position;
 use App\Models\Project;
 use App\Models\Worker;
+use App\Models\Client;
 use Illuminate\Console\Command;
 
 class DevCommand extends Command
@@ -29,13 +31,14 @@ class DevCommand extends Command
      */
     public function handle()
     {
-        $worker = Worker::find(1);
 //        $this->prepareData();
 //        $this->prepareManyToMany();
-        dump($worker->profile->toArray());
-        dump($worker->projects->toArray());
-        dump($worker->position->toArray());
+        $client = CLient::find(2);
+        $worker = Worker::find(2);
+        $worker = Worker::find(2);
 
+        $avatar = Avatar::find(8);
+        dd($avatar->avatarable->toArray());
     }
 
     private function prepareData()
