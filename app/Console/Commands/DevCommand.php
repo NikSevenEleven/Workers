@@ -32,20 +32,14 @@ class DevCommand extends Command
     public function handle()
     {
 
-//        $this->prepareData();
-//        $this->prepareManyToMany();
 
-         $department =Department::find(1);
-//        $position =Position::where('department_id',$department->id)
-//            ->where('title','Boss')->first();
-//        $worker=Worker::where('position_id',$position->id)->first();
-//        dd($worker->toArray());
+//          $department = Department::find(1);
+//          dd($department->workers->toArray());
 
-          $worker = Worker::find(7);
-          dd($worker->position->department->toArray());
+//         $worker = Worker::find(2);
+//         dd($worker->position->department->toArray());
 
-//        $department =Department::find(1);
-//      dd($department->boss);
+
 
     }
 
