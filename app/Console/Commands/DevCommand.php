@@ -6,6 +6,7 @@ use App\Models\Avatar;
 use App\Models\Department;
 use App\Models\Position;
 use App\Models\Project;
+use App\Models\Review;
 use App\Models\Worker;
 use App\Models\Client;
 use Illuminate\Console\Command;
@@ -33,16 +34,26 @@ class DevCommand extends Command
     {
 //        $this->prepareData();
 //        $this->prepareManyToMany();
-        $client = CLient::find(2);
-        $worker = Worker::find(2);
-        $worker = Worker::find(2);
+        $reviews = Review::find(4);
+        dd($reviews->reviewable->toArray());
 
-        $avatar = Avatar::find(8);
-        dd($avatar->avatarable->toArray());
     }
 
     private function prepareData()
     {
+        Client::create([
+            'name'=>'Bob'
+        ]);
+
+        Client::create([
+            'name'=>'John'
+        ]);
+
+        Client::create([
+            'name'=>'Adam'
+        ]);
+
+
         $department1 = Department::create(
             [
                 'title'=>'IT'

@@ -10,10 +10,17 @@ class Client extends Model
     protected $table='clients';
     protected $guarded=false;
 
+    use HasFactory;
+
     public function avatar()
     {
         return $this->morphOne(Avatar::class,'avatarable');
     }
 
-    use HasFactory;
+    public function reviews()
+    {
+        return $this->morphMany(Review::class,'reviewable');
+    }
+
+
 }
