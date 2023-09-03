@@ -2,13 +2,12 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Avatar;
+use App\Models\Client;
 use App\Models\Department;
 use App\Models\Position;
 use App\Models\Project;
-use App\Models\Review;
+use App\Models\Tag;
 use App\Models\Worker;
-use App\Models\Client;
 use Illuminate\Console\Command;
 
 class DevCommand extends Command
@@ -34,8 +33,11 @@ class DevCommand extends Command
     {
 //        $this->prepareData();
 //        $this->prepareManyToMany();
-        $reviews = Review::find(4);
-        dd($reviews->reviewable->toArray());
+        $worker=Worker::find(1);
+        $client=Client::find(2);
+        $tag=Tag::find(1);
+        dd($tag->workers->toArray());
+
 
     }
 
