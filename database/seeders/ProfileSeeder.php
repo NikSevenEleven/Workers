@@ -2,17 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\Worker;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Profile;
 use Illuminate\Database\Seeder;
 
-class WorkerSeeder extends Seeder
+class ProfileSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-//        Worker::factory(20)->create();
+        Profile::factory(20)->create();
     }
 }
