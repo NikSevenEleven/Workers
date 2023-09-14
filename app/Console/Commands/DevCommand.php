@@ -31,11 +31,6 @@ class DevCommand extends Command
      */
     public function handle()
     {
-        $worker = Worker::find(1);
-
-        $worker->update([
-           'age'=>26
-        ]);
 
     }
 
