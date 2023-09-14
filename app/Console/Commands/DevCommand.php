@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SomeJob;
 use App\Models\Client;
 use App\Models\Department;
 use App\Models\Position;
@@ -31,7 +32,8 @@ class DevCommand extends Command
      */
     public function handle()
     {
-
+//        SomeJob::dispatch();
+        SomeJob::dispatch()->onQueue('some_queue');
     }
 
 
