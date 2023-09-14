@@ -33,7 +33,10 @@ class DevCommand extends Command
     public function handle()
     {
 //        SomeJob::dispatch();
+//        SomeJob::dispatchSync()->onQueue('some_queue');
+//        php artisan queue:work --queue=some_queue
         SomeJob::dispatch()->onQueue('some_queue');
+
     }
 
 
