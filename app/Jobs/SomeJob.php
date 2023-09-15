@@ -26,6 +26,6 @@ class SomeJob implements ShouldQueue
      */
     public function handle(): void
     {
-        dump($someBlack);
+
     }
 }
