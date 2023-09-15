@@ -32,12 +32,17 @@
                 <div>Is_married: {{$worker->is_married}}</div>
                 <div>
                     <a href="{{route('workers.show',$worker->id)}}">Look</a>
+                    @can('update',$worker)
                     <div>
                         <a href="{{route('workers.edit',$worker->id)}}">Edit</a>
                     </div>
+                    @endcan
+                    @can('create',\App\Models\Worker::class)
                     <div>
                         <a href="{{route('workers.create')}}">Add</a>
                     </div>
+                    @endcan
+                    @can('delete',$worker)
                     <div>
                         <form action="{{route('workers.destroy', $worker->id)}}" method="POST">
                         @method('DELETE')
@@ -45,6 +50,7 @@
                         <input type="submit" value="Delete">
                         </form>
                     </div>
+                    @endcan
                 </div>
             </div>
         <hr>
