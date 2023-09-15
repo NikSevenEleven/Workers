@@ -5,7 +5,7 @@
 <div>
          <hr>
             <div>
-                <form action="{{route('worker.update',$worker->id)}}" method="POST">
+                <form action="{{route('workers.update',$worker->id)}}" method="POST">
                     @method('PATCH')
                     @csrf
                     @error('name')<div>{{$message}}</div>@enderror
@@ -30,7 +30,7 @@
                     <div style="margin-bottom: 10px"><button type="submit" value="Save">Save</button></div>
                 </form>
             </div>
-                   <a href="{{route('worker.index')}}">Back</a>
+                   <a href="{{route('workers.index')}}">Back</a>
 </div>
 
 @endsection

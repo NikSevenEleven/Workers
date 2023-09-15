@@ -12,8 +12,8 @@
                 <div>Description: {{$worker->description}}</div>
                 <div>Is_married: {{$worker->is_married}}</div>
                 <div>
-                    <a href="{{route('worker.edit',$worker->id)}}">Edit</a>
-                    <a href="{{route('worker.index')}}">Back</a>
+                    <a href="{{route('workers.edit',$worker->id)}}">Edit</a>
+                    <a href="{{route('workers.index')}}">Back</a>
                 </div>
             </div>
         <hr>
