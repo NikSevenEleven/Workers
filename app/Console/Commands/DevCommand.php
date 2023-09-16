@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Filters\WorkerFirst\WorkerFilter;
 use App\Jobs\SomeJob;
 use App\Models\Client;
 use App\Models\Department;
@@ -32,11 +33,8 @@ class DevCommand extends Command
      */
     public function handle()
     {
-//        SomeJob::dispatch();
-//        SomeJob::dispatchSync()->onQueue('some_queue');
-//        php artisan queue:work --queue=some_queue
-        SomeJob::dispatch()->onQueue('some_queue');
 
+        return 0;
     }
 
 
