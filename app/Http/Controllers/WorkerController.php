@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Filters\WorkerFirst\WorkerFilter;
+use App\Http\Filters\WorkerSecond\Worker\Age;
+use App\Http\Filters\WorkerSecond\Worker\AgeFrom;
+use App\Http\Filters\WorkerSecond\Worker\AgeTo;
+use App\Http\Filters\WorkerSecond\Worker\Name;
 use App\Http\Requests\Worker\IndexRequest;
 use App\Http\Requests\Worker\StoreRequest;
 use App\Http\Requests\Worker\UpdateRequest;
@@ -13,12 +17,21 @@ class WorkerController extends Controller
 {
     public function index(IndexRequest $request)
     {
-        $data =$request->validated();
-        $filter = app()->make(WorkerFilter::class, ['params' => $data]);
-        $workerQuery = Worker::filter($filter);
+//        $data =$request->validated();
+//        $filter = app()->make(WorkerFilter::class, ['params' => $data]);
+//        $workerQuery = Worker::filter($filter);
 
+        $workers = app()->make(\Illuminate\Pipeline\Pipeline::class)
+            ->send(Worker::query())
+            ->through([
+                Age::class,
+                Name::class,
+                AgeTo::class,
+                AgeFrom::class,
+            ])
+            ->thenReturn();
 
-        $workers = $workerQuery->paginate(1);
+        $workers = $workers->paginate(1);
 
         return view('worker.index',compact('workers'));
     }
