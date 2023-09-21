@@ -14,11 +14,9 @@ class WorkerController extends Controller
     public function index(IndexRequest $request)
     {
         $data =$request->validated();
+        $filter = app()->make(WorkerFilter::class, ['params' => $data]);
+        $workerQuery = Worker::filter($filter);
 
-        $workerQuery = Worker::query();
-
-        $filter = new WorkerFilter($data);
-        $filter->applyFilter($workerQuery);
 
         $workers = $workerQuery->paginate(1);
 

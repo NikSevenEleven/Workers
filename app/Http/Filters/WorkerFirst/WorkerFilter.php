@@ -4,9 +4,9 @@ namespace App\Http\Filters\WorkerFirst;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class WorkerFilter
+class WorkerFilter extends AbstractFilter
 {
-    private array $params = [];
+
 
     const NAME = 'name';
     const SURNAME = 'surname';
@@ -19,10 +19,7 @@ class WorkerFilter
     /**
      * @param array $params
      */
-    public function __construct(array $params)
-    {
-        $this->params = $params;
-    }
+
 
     public function getCallbacks():array
     {
@@ -37,14 +34,7 @@ class WorkerFilter
         ];
     }
 
-    public function applyFilter($builder)
-    {
-        foreach ($this->getCallbacks() as $key => $callback) {
-            if(isset($this->params[$key])){
-                $this->$callback($builder,$this->params[$key]);
-            }
-        }
-    }
+
 
     public function name(Builder $builder,$value)
     {
